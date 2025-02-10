@@ -1,0 +1,42 @@
+[
+  {
+    "objectID": "PracticalDay5.html",
+    "href": "PracticalDay5.html",
+    "title": "2  Practical Day 5",
+    "section": "",
+    "text": "2.1 Question 1",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Practical Day 5</span>"
+    ]
+  },
+  {
+    "objectID": "PracticalDay5.html#question-1",
+    "href": "PracticalDay5.html#question-1",
+    "title": "2  Practical Day 5",
+    "section": "",
+    "text": "2.1.1 1.1\n\nlibrary(ggplot2)\nset.seed(1)\ndata&lt;-data.frame(x=rnorm(100, mean = 3, sd = 1))\n\nDensPlot&lt;-ggplot(data, aes(x = x)) +\n  geom_density(fill = \"lightgreen\", alpha = 0.5) +\n  labs(\n    title = \"Empirical Density of Simulated Normal Data\",\n    subtitle = \"100 samples from ~N(3,1)\",\n    x = \"Simulated Normal Distribution Values\",\n    y = \"Density\",\n  ) +\n  theme_minimal()\nDensPlot\n\n\n\n\n\n\n\nFigure 2.1: Empirical Density of Simulated Normal Data\n\n\n\n\n\n\n\n2.1.2 1.2\nThe empirical density plot can be viewed here Figure 2.1 ### 3\n\ntrue_density &lt;- data.frame(\n  x = data$x,\n  y = dnorm(data$x, mean = 3, sd = 1) \n)\nDensPlot+geom_line(data = true_density, aes(x,y), color = \"red\", linewidth = 1.1)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Practical Day 5</span>"
+    ]
+  },
+  {
+    "objectID": "PracticalDay5.html#question-2",
+    "href": "PracticalDay5.html#question-2",
+    "title": "2  Practical Day 5",
+    "section": "2.2 Question 2",
+    "text": "2.2 Question 2\nlibrary(palmerpenguins)\nlibrary(knitr)\nlibrary(dplyr)\n#2 way frequency table\npenguin_table &lt;- addmargins(table(penguins$species, penguins$island))\npenguin_table\n        Biscoe Dream Torgersen Sum\nAdelie 44 56 52 152 Chinstrap 0 68 0 68 Gentoo 124 0 0 124 Sum 168 124 52 344\npenguin_df &lt;- as.data.frame(penguin_table)\ncolnames(penguin_df) &lt;- c(\"Species\", \"Island\", \"Count\")\n\n#Display the table \nkable(penguin_table, caption = \"Frequency of Penguin Species by Island\", \n      align = \"c\")\n\nFrequency of Penguin Species by Island\n\n\n\nBiscoe\nDream\nTorgersen\nSum\n\n\n\n\nAdelie\n44\n56\n52\n152\n\n\nChinstrap\n0\n68\n0\n68\n\n\nGentoo\n124\n0\n0\n124\n\n\nSum\n168\n124\n52\n344\n\n\n\n\n\n\nTable 2.1: Frequency of Penguin Species by Island.\n\n\n\n\n\n\nBiscoe\nDream\nTorgersen\nSum\n\n\n\n\nAdelie\n44\n56\n52\n152\n\n\nChinstrap\n0\n68\n0\n68\n\n\nGentoo\n124\n0\n0\n124\n\n\nSum\n168\n124\n52\n344\n\n\n\n\n\n\nTable 2.1 above is a 2 way frequency of Penguin Species by Island",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Practical Day 5</span>"
+    ]
+  },
+  {
+    "objectID": "PracticalDay5.html#question-3",
+    "href": "PracticalDay5.html#question-3",
+    "title": "2  Practical Day 5",
+    "section": "2.3 Question 3",
+    "text": "2.3 Question 3\n\nlibrary(ggplot2)\nPlot1&lt;-ggplot(penguins,aes(species,flipper_length_mm))+geom_boxplot(aes(colour = species))+labs(title=\"Flipper length vs Species of Penguin\",x=\"Species\",y=\"Flipper length(mm)\")\nPlot1\n\n\n\n\n\n\n\nPlot2&lt;-ggplot(penguins,aes(x=flipper_length_mm,fill = species))+geom_density(alpha=0.5)+labs(title=\"Density Plot of Flipper Length by Species\",x=\"Flipper Length (mm)\",y=\"Density\")\nPlot2\n\n\n\n\n\n\n\nPlot3&lt;-ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +\n  geom_density(alpha = 0.5) +\n  facet_wrap(~ species) +\n  labs(title = \"Flipper Length Density by Species (Faceted)\",\n       x = \"Flipper Length (mm)\",\n       y = \"Density\")\nPlot3",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Practical Day 5</span>"
+    ]
+  }
+]
