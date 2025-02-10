@@ -1,0 +1,25 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: Practical Week 2
+  chapters:
+    - index.qmd
+    - PracticalDay5.qmd
+  sidebar:
+    border: true
+    background: light
+    position: right
+  navbar:
+    search: true
+    background: light
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+
+

@@ -1,0 +1,92 @@
+# Practical Day 5
+
+## Question 1
+
+### 1.1
+
+```{r}
+#| label: fig-dens-plot
+#| fig-cap: "Empirical Density of Simulated Normal Data"
+library(ggplot2)
+set.seed(1)
+data<-data.frame(x=rnorm(100, mean = 3, sd = 1))
+
+DensPlot<-ggplot(data, aes(x = x)) +
+  geom_density(fill = "lightgreen", alpha = 0.5) +
+  labs(
+    title = "Empirical Density of Simulated Normal Data",
+    subtitle = "100 samples from ~N(3,1)",
+    x = "Simulated Normal Distribution Values",
+    y = "Density",
+  ) +
+  theme_minimal()
+DensPlot
+
+```
+
+### 1.2
+
+The empirical density plot can be viewed here @fig-dens-plot \### 3
+
+```{r}
+
+true_density <- data.frame(
+  x = data$x,
+  y = dnorm(data$x, mean = 3, sd = 1) 
+)
+DensPlot+geom_line(data = true_density, aes(x,y), color = "red", linewidth = 1.1)
+```
+
+## Question 2
+
+```{r}
+#| results: asis
+#| warning: false
+#| message: false
+library(palmerpenguins)
+library(knitr)
+library(dplyr)
+#2 way frequency table
+penguin_table <- addmargins(table(penguins$species, penguins$island))
+penguin_table
+penguin_df <- as.data.frame(penguin_table)
+colnames(penguin_df) <- c("Species", "Island", "Count")
+
+#Display the table 
+kable(penguin_table, caption = "Frequency of Penguin Species by Island", 
+      align = "c")
+
+```
+
+::: {#tbl-summary}
+|           | Biscoe | Dream | Torgersen | Sum |
+|:----------|:------:|:-----:|:---------:|:---:|
+| Adelie    |   44   |  56   |    52     | 152 |
+| Chinstrap |   0    |  68   |     0     | 68  |
+| Gentoo    |  124   |   0   |     0     | 124 |
+| Sum       |  168   |  124  |    52     | 344 |
+
+Frequency of Penguin Species by Island.
+:::
+
+@tbl-summary above is a 2 way frequency of Penguin Species by Island
+
+## Question 3
+
+```{r}
+#| warning: false
+library(ggplot2)
+Plot1<-ggplot(penguins,aes(species,flipper_length_mm))+geom_boxplot(aes(colour = species))+labs(title="Flipper length vs Species of Penguin",x="Species",y="Flipper length(mm)")
+Plot1
+
+Plot2<-ggplot(penguins,aes(x=flipper_length_mm,fill = species))+geom_density(alpha=0.5)+labs(title="Density Plot of Flipper Length by Species",x="Flipper Length (mm)",y="Density")
+Plot2
+
+Plot3<-ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~ species) +
+  labs(title = "Flipper Length Density by Species (Faceted)",
+       x = "Flipper Length (mm)",
+       y = "Density")
+Plot3
+```
